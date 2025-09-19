@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Street Food Billing System</title>
-<style>
-    body { font-family: Arial, sans-serif; background-color: #f2f2f2; margin: 0; padding: 0; }
-    h1 { text-align: center; color: #333; }
-    .container { max-width: 1200px; margin: auto; padding: 20px; }
-    .section { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-    .section h2 { margin-top: 0; }
-    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-    table, th, td { border: 1px solid #ccc; }
-    th, td { padding: 10px; text-align: center; }
-    input[type=number], input[type=text] { width: 80px; padding: 5px; }
-    textarea { width: 100%; height: 200px; padding: 10px; }
-    button { padding: 10px 20px; margin: 5px; cursor: pointer; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STREET FOOD BILLING</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Street Food Billing System</h1>
-<div class="container">
+  <!-- Animated Heading -->
+  <h1 class="typing moving">STREET FOOD BILLING</h1>
+
+  <div class="container">
     <div class="section">
         <h2>Customer Details</h2>
         <label>Name: <input type="text" id="custName"></label>
@@ -29,7 +19,7 @@
     </div>
 
     <div class="section">
-        <h2>Burgers</h2>
+        <h2 align=center>Burgers</h2>
         <table>
             <tr><th>Item</th><th>Price</th><th>Quantity</th></tr>
             <tr><td>Aloo-Tikki Burger</td><td>50</td><td><input type="number" id="vegburger" value="0"></td></tr>
@@ -42,7 +32,7 @@
     </div>
 
     <div class="section">
-        <h2>Pizza</h2>
+        <h2 align=center>Pizza</h2>
         <table>
             <tr><th>Item</th><th>Price</th><th>Quantity</th></tr>
             <tr><td>Margherita</td><td>100</td><td><input type="number" id="margherita" value="0"></td></tr>
@@ -55,7 +45,7 @@
     </div>
 
     <div class="section">
-        <h2>Shakes</h2>
+        <h2 align=center>Shakes</h2>
         <table>
             <tr><th>Item</th><th>Price</th><th>Quantity</th></tr>
             <tr><td>Chocolate Shake</td><td>100</td><td><input type="number" id="chocolate" value="0"></td></tr>
@@ -74,80 +64,80 @@
         <button onclick="sendEmail()">Send via Email</button>
         <textarea id="billArea" readonly></textarea>
     </div>
-</div>
+  </div>
 
-<script>
-const burgerPrices = { vegburger:50, cheeseburger:60, kfcburger:100, cornburger:70, periburger:80, doubleburger:120 };
-const pizzaPrices = { margherita:100, cheeseburst:100, tandori:150, cornpizza:200, farmhouse:350, italian:450 };
-const shakePrices = { chocolate:100, strawberry:100, kitkat:150, oreo:180, blueberry:210, butterscotch:175 };
+  <script>
+  const burgerPrices = { vegburger:50, cheeseburger:60, kfcburger:100, cornburger:70, periburger:80, doubleburger:120 };
+  const pizzaPrices = { margherita:100, cheeseburst:100, tandori:150, cornpizza:200, farmhouse:350, italian:450 };
+  const shakePrices = { chocolate:100, strawberry:100, kitkat:150, oreo:180, blueberry:210, butterscotch:175 };
 
-function calculateBill(){
-    let bill = `\t**WELCOME TO STREET FOODS**\n`;
-    bill += `Customer: ${document.getElementById("custName").value}\n`;
-    bill += `Phone: ${document.getElementById("custPhone").value}\n`;
-    bill += `====================================\n`;
-    bill += `Item\tQuantity\tPrice\n`;
-    bill += `====================================\n`;
+  function calculateBill(){
+      let bill = `\t**WELCOME TO STREET FOODS**\n`;
+      bill += `Customer: ${document.getElementById("custName").value}\n`;
+      bill += `Phone: ${document.getElementById("custPhone").value}\n`;
+      bill += `====================================\n`;
+      bill += `Item\tQuantity\tPrice\n`;
+      bill += `====================================\n`;
 
-    let total = 0;
+      let total = 0;
 
-    // Burgers
-    for (let id in burgerPrices){
-        let qty = parseInt(document.getElementById(id).value) || 0;
-        if(qty>0){
-            let price = qty * burgerPrices[id];
-            bill += `${id}\t${qty}\t${price}\n`;
-            total += price;
-        }
-    }
+      // Burgers
+      for (let id in burgerPrices){
+          let qty = parseInt(document.getElementById(id).value) || 0;
+          if(qty>0){
+              let price = qty * burgerPrices[id];
+              bill += `${id}\t${qty}\t${price}\n`;
+              total += price;
+          }
+      }
 
-    // Pizza
-    for (let id in pizzaPrices){
-        let qty = parseInt(document.getElementById(id).value) || 0;
-        if(qty>0){
-            let price = qty * pizzaPrices[id];
-            bill += `${id}\t${qty}\t${price}\n`;
-            total += price;
-        }
-    }
+      // Pizza
+      for (let id in pizzaPrices){
+          let qty = parseInt(document.getElementById(id).value) || 0;
+          if(qty>0){
+              let price = qty * pizzaPrices[id];
+              bill += `${id}\t${qty}\t${price}\n`;
+              total += price;
+          }
+      }
 
-    // Shakes
-    for (let id in shakePrices){
-        let qty = parseInt(document.getElementById(id).value) || 0;
-        if(qty>0){
-            let price = qty * shakePrices[id];
-            bill += `${id}\t${qty}\t${price}\n`;
-            total += price;
-        }
-    }
+      // Shakes
+      for (let id in shakePrices){
+          let qty = parseInt(document.getElementById(id).value) || 0;
+          if(qty>0){
+              let price = qty * shakePrices[id];
+              bill += `${id}\t${qty}\t${price}\n`;
+              total += price;
+          }
+      }
 
-    // Tax 10%
-    let tax = total * 0.10;
-    bill += `------------------------------------\n`;
-    bill += `Tax\t\t${tax.toFixed(2)}\n`;
-    bill += `Total Bill\t\t${(total+tax).toFixed(2)}\n`;
-    bill += `------------------------------------\n`;
-    bill += `Thank you! Visit Again.\n`;
+      // Tax 10%
+      let tax = total * 0.10;
+      bill += `------------------------------------\n`;
+      bill += `Tax\t\t${tax.toFixed(2)}\n`;
+      bill += `Total Bill\t\t${(total+tax).toFixed(2)}\n`;
+      bill += `------------------------------------\n`;
+      bill += `Thank you! Visit Again.\n`;
 
-    document.getElementById("billArea").value = bill;
-}
+      document.getElementById("billArea").value = bill;
+  }
 
-function clearAll(){
-    document.querySelectorAll("input[type=number]").forEach(input=>input.value=0);
-    document.getElementById("custName").value = "";
-    document.getElementById("custPhone").value = "";
-    document.getElementById("billArea").value = "";
-}
+  function clearAll(){
+      document.querySelectorAll("input[type=number]").forEach(input=>input.value=0);
+      document.getElementById("custName").value = "";
+      document.getElementById("custPhone").value = "";
+      document.getElementById("billArea").value = "";
+  }
 
-function sendEmail(){
-    let billText = document.getElementById("billArea").value;
-    if(!billText) { alert("Bill is empty!"); return; }
-    let email = prompt("Enter recipient email:");
-    if(email){
-        window.location.href = `mailto:${email}?subject=Street Foods Bill&body=${encodeURIComponent(billText)}`;
-    }
-}
-</script>
+  function sendEmail(){
+      let billText = document.getElementById("billArea").value;
+      if(!billText) { alert("Bill is empty!"); return; }
+      let email = prompt("Enter recipient email:");
+      if(email){
+          window.location.href = `mailto:${email}?subject=Street Foods Bill&body=${encodeURIComponent(billText)}`;
+      }
+  }
+  </script>
 
 </body>
 </html>
