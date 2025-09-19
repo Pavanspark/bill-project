@@ -62,8 +62,9 @@ button { padding: 10px 20px; margin: 5px; cursor: pointer; }
   border-right: 3px solid black; /* cursor */
   font-size: 2.5rem;
   font-weight: bold;
-  color: black;   /* 🔥 changed to black */
+  color: white;   /* 🔥 changed to black */
   margin: 40px auto;
   text-align: center;
   animation: typing 4s steps(30), blink .7s step-end infinite;
+
 }
